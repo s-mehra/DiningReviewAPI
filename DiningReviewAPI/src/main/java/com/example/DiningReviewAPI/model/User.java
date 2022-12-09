@@ -5,6 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.*;
 
+/**
+ * Class represents a user entity who would submit reviews about a restaurant in the API model
+ * 
+ * @author Soham Mehra @version 12.7.2022
+ * 
+ */
 @Entity
 public class User{
 
@@ -59,7 +65,7 @@ public class User{
      * @return
      *          current value for the user's interest in peanut allergies
      */
-    @Getter @Setter private boolean peanutAllergies;
+    @Getter @Setter private Boolean peanutAllergies;
 
     /**
      * Whether the user is interested in egg allergies or not
@@ -68,7 +74,7 @@ public class User{
      * @return
      *          current value for the user's interest in egg allergies
      */
-    @Getter @Setter private boolean eggAllergies;
+    @Getter @Setter private Boolean eggAllergies;
 
     /**
      * Whether the user is interested in dairy allergies or not
@@ -77,7 +83,7 @@ public class User{
      * @return
      *          current value for the user's interest in dairy allergies
      */
-    @Getter @Setter private boolean dairyAllergies;
+    @Getter @Setter private Boolean dairyAllergies;
 
 
     /**
@@ -97,7 +103,7 @@ public class User{
      * @param dairyAllergies
      *          true if the user has dairy allergies as an interest
      */
-    public User(String name, String city, String state, Integer zipcode, boolean peanutAllergies, boolean eggAllergies, boolean dairyAllergies){
+    public User(String name, String city, String state, Integer zipcode, Boolean peanutAllergies, Boolean eggAllergies, Boolean dairyAllergies){
         this.name = name;
         this.city = city;
         this.state = state;
