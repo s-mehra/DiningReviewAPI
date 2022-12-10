@@ -17,7 +17,7 @@ public class Restaurant {
     //unique id for each restaurant object
     @Id
     @GeneratedValue
-    private Long id;
+    @Getter @Setter private Long id;
 
     //instance variables to represent class attribute
     //Utilizing Lombok entities for ease getting and setting attributes
@@ -65,7 +65,7 @@ public class Restaurant {
      * @return
      *          Current zipcode of the restaurant's location
      */
-    @Getter @Setter private Long zipCode;
+    @Getter @Setter private String zipCode;
 
     /**
      * Overall rating for the restaurant
@@ -124,7 +124,7 @@ public class Restaurant {
      * @param dairyScore
      *          Dairy score of the restaurant
      */
-    public Restaurant(String name, String address, String state, String city, Long zipCode, String overallScore, String peanutScore, String eggScore, String dairyScore){
+    public Restaurant(String name, String address, String state, String city, String zipCode, String overallScore, String peanutScore, String eggScore, String dairyScore){
         this.name = name;
         this.address = address;
         this.state = state;

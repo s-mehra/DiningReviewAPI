@@ -17,7 +17,7 @@ public class User{
     //unique id for each User object
     @Id
     @GeneratedValue
-    private Long id;
+    @Getter @Setter private Long id;
 
     //instance variables to represent class attribute
     //Utilizing Lombok entities for ease getting and setting attributes
@@ -56,7 +56,7 @@ public class User{
      * @return
      *          user's current zipcode
      */
-    @Getter @Setter private Integer zipcode;
+    @Getter @Setter private String zipcode;
 
     /**
      * Whether the user is interested in peanut allergies or not
@@ -103,7 +103,7 @@ public class User{
      * @param dairyAllergies
      *          true if the user has dairy allergies as an interest
      */
-    public User(String name, String city, String state, Integer zipcode, Boolean peanutAllergies, Boolean eggAllergies, Boolean dairyAllergies){
+    public User(String name, String city, String state, String zipcode, Boolean peanutAllergies, Boolean eggAllergies, Boolean dairyAllergies){
         this.name = name;
         this.city = city;
         this.state = state;
