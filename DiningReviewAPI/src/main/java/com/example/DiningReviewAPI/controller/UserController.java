@@ -1,5 +1,6 @@
 package com.example.DiningReviewAPI.controller;
 
+import com.example.DiningReviewAPI.model.Restaurant;
 import com.example.DiningReviewAPI.model.User;
 import com.example.DiningReviewAPI.repository.UserRepository;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/users")
@@ -20,10 +22,15 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @PutMapping
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(User user){
-        validateUser(user);
+    public void addUser(@RequestBody User user){
+        System.out.println(user.getName());
+        System.out.println(user.getId());
+        System.out.println(user.getCity());
+        System.out.println(user.getEggAllergies());
+
+        validateNewUser(user);
 
         userRepository.save(user);
     }
@@ -60,6 +67,11 @@ public class UserController {
         userRepository.save(existingUser);
     }
 
+    @GetMapping
+    public Iterable<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
     private void copyUserInfoFrom(User newUser, User existingUser){
         if (ObjectUtils.isEmpty(newUser.getName())) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
@@ -90,6 +102,20 @@ public class UserController {
         }
     }
 
+    private void validateNewUser(User user) {
+        if (ObjectUtils.isEmpty(user.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User name cannot be empty");
+        }
+
+        // You can add more validation checks for other user fields if needed
+
+        Optional<User> existingUser = userRepository.findUserByName(user.getName());
+        if (existingUser.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User with the same name already exists");
+        }
+    }
+
+
     private void validateUser(User user){
         validateUserName(user.getName());
 
@@ -105,5 +131,5 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
-    
+
 }

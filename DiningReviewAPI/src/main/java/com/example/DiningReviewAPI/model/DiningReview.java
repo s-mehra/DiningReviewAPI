@@ -8,15 +8,16 @@ import lombok.*;
 /**
  * class represents a dining review entity in the api model
  * each instance will represent a review submitted by a user about a restaurant
- * 
+ *
  * @author Soham Mehra @version 12.08.2022
  */
 @Entity
 public class DiningReview{
-    
+
     //unique id for each Dining Review object
     @Id
     @GeneratedValue
+    @Getter
     private Long id;
 
     //instance variables to represent class attribute
@@ -32,7 +33,7 @@ public class DiningReview{
     @Getter @Setter private String userName;
 
     /**
-     * restaurant the review is being left for 
+     * restaurant the review is being left for
      * @param restaurant
      *          the new restaurant that the user would like their review to be for
      * @return
@@ -81,15 +82,18 @@ public class DiningReview{
      * @param reviewStatus
      *          the new review status for the review
      * @return
-     *          the current review status for the review            
+     *          the current review status for the review
      */
     @Getter @Setter private Status reviewStatus;
+
+    public DiningReview() {
+    }
 
     /**
      * Constructor for Dining Review Entity
      * @param userName
      *          user who is leaving the review
-     * @param restaurant
+     * @param restaurantId
      *          restaurant for which the review is being left
      * @param peanutScore
      *          score for peanut allergen handling
@@ -103,7 +107,8 @@ public class DiningReview{
     public DiningReview(String userName, Long restaurantId, Integer peanutScore, Integer eggScore, Integer dairyScore, String commentary){
         this.userName = userName;
         this.restaurantId = restaurantId;
-        this.peanutScore = eggScore;
+        this.peanutScore = peanutScore;
+        this.eggScore = eggScore;
         this.dairyScore = dairyScore;
         this.commentary = commentary;
 
