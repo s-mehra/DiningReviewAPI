@@ -3,15 +3,18 @@ package com.example.DiningReviewAPI.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.*;
 
 /**
  * Class represents a user entity who would submit reviews about a restaurant in the API model
- * 
+ *
  * @author Soham Mehra @version 12.7.2022
- * 
+ *
  */
 @Entity
+@Table(name = "`User`")
 public class User{
 
     //unique id for each User object
@@ -32,7 +35,7 @@ public class User{
     @Getter @Setter private String name;
 
     /**
-     * City the user is present in 
+     * City the user is present in
      * @param name
      *          new value for the city the user resides in
      * @return
@@ -85,6 +88,8 @@ public class User{
      */
     @Getter @Setter private Boolean dairyAllergies;
 
+    public User() {
+    }
 
     /**
      * This method is the constructor for the User class
@@ -113,5 +118,5 @@ public class User{
         this.dairyAllergies = dairyAllergies;
     }
 
-    
+
 }

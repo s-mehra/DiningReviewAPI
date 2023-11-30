@@ -13,19 +13,19 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 @RestController
-@RequestMapping("/{admin}")
+@RequestMapping("/admin")
 public class AdminController {
 
     private final RestaurantRepository restaurantRepository;
     private final ReviewRepository reviewRepository;
-    
+
 
     private final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     public AdminController(RestaurantRepository restaurantRepository, ReviewRepository reviewRepository){
         this.restaurantRepository = restaurantRepository;
         this.reviewRepository = reviewRepository;
-        
+
     }
 
     @GetMapping("/reviews")
@@ -83,7 +83,7 @@ public class AdminController {
         for (DiningReview review : reviews){
             if(!ObjectUtils.isEmpty(review.getPeanutScore())){
                 peanutSum += review.getPeanutScore();
-                peanutCount++;    
+                peanutCount++;
             }
 
             if(!ObjectUtils.isEmpty(review.getEggScore())){
@@ -123,5 +123,5 @@ public class AdminController {
     }
 
 
-    
+
 }

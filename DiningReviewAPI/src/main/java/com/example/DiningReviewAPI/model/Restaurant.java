@@ -8,7 +8,7 @@ import lombok.*;
 /**
  * Class represents a restaurant entity in the model
  * Each object will have ratings, name and location by which they can be searched for
- * 
+ *
  * @author Soham Mehra @version 12.08.2022
  */
 @Entity
@@ -103,6 +103,10 @@ public class Restaurant {
      */
     @Getter @Setter private String dairyScore;
 
+    // default constructor
+    public Restaurant() {
+    }
+
     /**
      * Constructor for restaurant entity
      * @param name
@@ -124,6 +128,7 @@ public class Restaurant {
      * @param dairyScore
      *          Dairy score of the restaurant
      */
+
     public Restaurant(String name, String address, String state, String city, String zipCode, String overallScore, String peanutScore, String eggScore, String dairyScore){
         this.name = name;
         this.address = address;
@@ -137,6 +142,4 @@ public class Restaurant {
 
     }
 
-    
-    
 }
